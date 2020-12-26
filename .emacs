@@ -15,3 +15,5 @@
  ;; If there is more than one, they won't work right.
  )
 (global-display-line-numbers-mode)
+(package-initialize)
+(evil-mode 1)        ;; enable evil-mode
