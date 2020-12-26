@@ -1,3 +1,9 @@
+--  How can I reload xmobar's configuration?
+--
+--  Since xmonad will show a restarted xmobar just fine, use
+--  killall xmobar; xmobar &
+--  in terminal to make the changes in .xmobarrc effective.
+
 -- This is supposed to be at the location: "/home/explorer436/.config/xmobar"
 
 -- You can find weather location codes here.
@@ -35,10 +41,11 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     , Run Swap [] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
+       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% | %UnsafeStdinReader% }\
                     \{ <fc=#ee9a00>%date%</fc>| %KDAW% | %uname%"
        }
 
