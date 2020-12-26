@@ -242,20 +242,6 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 set tags=./tags;/         
 
 "------------------------------
-" If Vim keeps complaining about not finding the color scheme at start-up,
-" it maybe worth it to copy the gruvbox.vim file to Vim colors file.
-
-" In Linux, it is usually at /usr/share/vim/vim82/colors
-" In Linux, Go to /home/explorer436/.vim/plugged/gruvbox/colors/" and run this command: 
-" cp gruvbox.vim /usr/share/vim/vim82/colors
-
-" In Windows, the locations of the plugged folder and the vim colors folder
-" may be different.
-
-colo gruvbox
-set bg=dark
-"------------------------------
-
 if has('win32')
     let $PATH .= ';' . 'C:/Program Files (x86)/Git/bin'
 endif
