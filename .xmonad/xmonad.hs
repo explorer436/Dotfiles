@@ -5,7 +5,6 @@
 -- and how to override the defaults in your own xmonad.hs conf file.
 --
 -- Normally, you'd only override those defaults you care about.
---
 
 -- IMPORTS
 

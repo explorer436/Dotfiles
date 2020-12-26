@@ -1,6 +1,9 @@
 -- This is supposed to be at the location: "/home/explorer436/.config/xmobar"
 
-Config { font = "-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*"
+-- You can find weather location codes here.
+-- List of airports by ICAO code: K - https://en.wikipedia.org/wiki/List_of_airports_by_ICAO_code:_K#K_%E2%80%93_United_States 
+
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , additionalFonts = []
        , borderColor = "black"
        , border = TopB
@@ -17,7 +20,7 @@ Config { font = "-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
+       , commands = [ Run Weather "KDAW" ["-t","<station>: <tempC>C",
                                           "-L","18","-H","25",
                                           "--normal","green",
                                           "--high","red",
@@ -36,6 +39,6 @@ Config { font = "-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
-                    \{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
+                    \{ <fc=#ee9a00>%date%</fc>| %KDAW% | %uname%"
        }
 
