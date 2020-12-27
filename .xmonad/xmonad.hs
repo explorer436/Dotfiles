@@ -12,6 +12,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 
+-- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-StackSet.html#g:2
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -19,6 +20,16 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.Run (spawnPipe)
 
 import XMonad.Hooks.ManageDocks (docks, avoidStruts)
+
+-- https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Hooks-DynamicLog.html
+import XMonad.Hooks.DynamicLog (statusBar, dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
+
+import XMonad.Hooks.FadeInactive
+import System.IO (hPutStrLn)
+import XMonad.Hooks.WorkspaceHistory (workspaceHistoryHook)
+
+-- https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Hooks-EwmhDesktops.html
+import XMonad.Hooks.EwmhDesktops (ewmh)
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -256,8 +267,17 @@ myEventHook = mempty
 
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
+
 myLogHook = return ()
+
+{- |
+myLogHook :: X ()
+myLogHook = fadeInactiveLogHook fadeAmount
+            where fadeAmount = 1.0
+
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+-}
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -269,26 +289,34 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
     spawn "/home/.xmonad/scripts/autostart.sh"
-    -- spawnOnce "variety --restore &"
+    spawnOnce "variety &"
     -- spawnOnce "picom &"
 
 ------------------------------------------------------------------------
--- Now run xmonad with all the defaults we set up.
+-- Command to launch the bar.
+myBar = "xmobar"
 
--- Run xmonad with the settings you specify. No need to modify this.
---
--- main = xmonad defaults
--- 0 stands for monitor 1
-main = do
-  xmproc <- spawnPipe "xmobar -x 0 /home/explorer436/.config/xmobar/xmobarrc"
-  xmonad $ docks defaults
+-- Custom PP, configure it as you like. It determines what is being written to the bar.
+myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "|" "|" }
 
+-- Key binding to toggle the gap for the bar.
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+
+------------------------------------------------------------------------
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
 -- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
+
+-- Run xmonad with the settings that we specify.
+
+main :: IO ()
+-- main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
+main = do
+  -- 0 stands for monitor 1
+  -- xmproc <- spawnPipe "xmobar -x 0 /home/explorer436/.config/xmobar/xmobarrc"
+  xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
+--  xmonad $ ewmh defaults
+
 defaults = def {
       -- simple stuff
         terminal           = myTerminal,
@@ -310,7 +338,8 @@ defaults = def {
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
         startupHook        = myStartupHook
-    }
+}
+
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
