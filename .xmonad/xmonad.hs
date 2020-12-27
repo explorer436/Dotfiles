@@ -313,9 +313,9 @@ main :: IO ()
 -- main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
 main = do
   -- 0 stands for monitor 1
-  -- xmproc <- spawnPipe "xmobar -x 0 /home/explorer436/.config/xmobar/xmobarrc"
-  xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
---  xmonad $ ewmh defaults
+  xmproc <- spawnPipe "xmobar -x 0 /home/explorer436/.config/xmobar/xmobarrc"
+  -- xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
+  xmonad $ defaults
 
 defaults = def {
       -- simple stuff
