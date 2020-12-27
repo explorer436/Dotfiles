@@ -89,7 +89,7 @@ Config {
    , commands = [ 
 
         -- weather monitor
-        Run Weather "KDAW" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
+        Run Weather "KDAW" [ "--template", "SkyCondition <skyCondition> | <fc=#4682B4><tempC></fc>°C"
                              ] 36000
 
         -- StdinReader
