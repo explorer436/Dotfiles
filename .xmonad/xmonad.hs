@@ -26,12 +26,11 @@ import XMonad.Hooks.ManageDocks (docks, avoidStruts)
 -- https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Hooks-DynamicLog.html
 import XMonad.Hooks.DynamicLog (statusBar, dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 
-import XMonad.Hooks.FadeInactive
 import System.IO (hPutStrLn)
 import XMonad.Hooks.WorkspaceHistory (workspaceHistoryHook)
 
 -- https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Hooks-EwmhDesktops.html
-import XMonad.Hooks.EwmhDesktops (ewmh)
+-- import XMonad.Hooks.EwmhDesktops (ewmh)
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
