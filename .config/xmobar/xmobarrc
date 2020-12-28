@@ -62,7 +62,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %KDAW% | %date% | %kbd% "
+   , template = "%StdinReader% | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %KDAW% | %date% | %kbd% | %uname% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -89,11 +89,13 @@ Config {
    , commands = [ 
 
         -- weather monitor
-        Run Weather "KDAW" [ "--template", "SkyCondition <skyCondition> | <fc=#4682B4><tempC></fc>°C"
+        Run Weather "KDAW" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C"
                              ] 36000
 
         -- StdinReader
         , Run StdinReader
+
+        , Run Com "uname" ["-s","-r"] "" 36000
 
         -- network activity monitor (dynamic interface resolution)
         , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
