@@ -19,6 +19,8 @@ import qualified Data.Map        as M
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run (spawnPipe)
 
+-- https://hackage.haskell.org/package/xmonad-contrib-0.13/docs/XMonad-Hooks-ManageDocks.html
+-- This module provides tools to automatically manage dock type programs, such as gnome-panel, kicker, dzen, and xmobar. 
 import XMonad.Hooks.ManageDocks (docks, avoidStruts)
 
 -- https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Hooks-DynamicLog.html
@@ -161,7 +163,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart; killall xmobar; xmobar &")
+    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart;")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -216,7 +218,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts(tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -268,7 +270,8 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 
-myLogHook = return ()
+-- myLogHook h = return ()
+myLogHook h = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
 
 {- |
 myLogHook :: X ()
@@ -314,10 +317,10 @@ main :: IO ()
 main = do
   -- 0 stands for monitor 1
   xmproc <- spawnPipe "xmobar -x 0 /home/explorer436/.config/xmobar/xmobarrc"
-  -- xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
-  xmonad $ defaults
+  xmonad $ docks (defaults xmproc)
+--  xmonad $ ewmh defaults
 
-defaults = def {
+defaults h = def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -336,7 +339,7 @@ defaults = def {
         layoutHook         = myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = myLogHook h,
         startupHook        = myStartupHook
 }
 
