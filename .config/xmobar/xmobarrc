@@ -1,3 +1,5 @@
+-- Reference: https://wiki.archlinux.org/index.php/Xmobar#Configuration
+
 --  How can I reload xmobar's configuration?
 --
 --  Since xmonad will show a restarted xmobar just fine, use
@@ -6,48 +8,7 @@
 
 -- This is supposed to be at the location: "/home/explorer436/.config/xmobar"
 
--- You can find weather location codes here.
--- List of airports by ICAO code: K - https://en.wikipedia.org/wiki/List_of_airports_by_ICAO_code:_K#K_%E2%80%93_United_States 
-
--- Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
---        , additionalFonts = []
---        , borderColor = "black"
---        , border = TopB
---        , bgColor = "black"
---        , fgColor = "grey"
---        , alpha = 255
---        , position = Top
---        , textOffset = -1
---        , iconOffset = -1
---        , lowerOnStart = True
---        , pickBroadest = False
---        , persistent = False
---        , hideOnStart = False
---        , iconRoot = "."
---        , allDesktops = True
---        , overrideRedirect = True
---        , commands = [ Run Weather "KDAW" ["-t","<station>: <tempC>C",
---                                           "-L","18","-H","25",
---                                           "--normal","green",
---                                           "--high","red",
---                                           "--low","lightblue"] 36000
---                     , Run Network "eth0" ["-L","0","-H","32",
---                                           "--normal","green","--high","red"] 10
---                     , Run Network "eth1" ["-L","0","-H","32",
---                                           "--normal","green","--high","red"] 10
---                     , Run Cpu ["-L","3","-H","50",
---                                "--normal","green","--high","red"] 10
---                     , Run Memory ["-t","Mem: <usedratio>%"] 10
---                     , Run Swap [] 10
---                     , Run Com "uname" ["-s","-r"] "" 36000
---                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
---                     ]
---        , sepChar = "%"
---        , alignSep = "}{"
---        , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
---                     \{ <fc=#ee9a00>%date%</fc>| %KDAW% | %uname%"
---        }
-
+-- You can find weather location codes at - List of airports by ICAO code: K - https://en.wikipedia.org/wiki/List_of_airports_by_ICAO_code:_K#K_%E2%80%93_United_States 
 
 Config { 
 
