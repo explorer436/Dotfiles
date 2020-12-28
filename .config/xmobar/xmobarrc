@@ -62,7 +62,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %KDAW% | %date% | %kbd% | %uname% "
+   , template = "%StdinReader% | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %KDAW% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -95,7 +95,8 @@ Config {
         -- StdinReader
         , Run StdinReader
 
-        , Run Com "uname" ["-s","-r"] "" 36000
+        -- To get the uname of the computer: Linux 5.9.14-arch1-1
+        -- , Run Com "uname" ["-s","-r"] "" 36000
 
         -- network activity monitor (dynamic interface resolution)
         , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
@@ -155,8 +156,9 @@ Config {
         , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
 
         -- keyboard layout indicator
-        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
-                             , ("us"         , "<fc=#8B0000>US</fc>")
-                             ]
+        -- reads the keyboard layout value from '/etc/default/keyboard'
+        -- , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
+        --                      , ("us"         , "<fc=#8B0000>US</fc>")
+        --                     ]
         ]
    }
