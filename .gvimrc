@@ -20,3 +20,6 @@
 
 colo onedark
 
+" colo gruvbox
+" set bg=dark
+
