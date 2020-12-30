@@ -61,6 +61,7 @@ myBorderWidth   = 2
 -- change the modkey from "left alt" to "super key" which is also called the windows key
 myModMask       = mod4Mask 
 
+------------------------------------------------------------------------
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
 -- workspace name. The number of workspaces is determined by the length
@@ -202,13 +203,13 @@ myStartupHook = do
 
 ------------------------------------------------------------------------
 -- Command to launch the bar.
-myBar = "xmobar"
+-- myBar = "xmobar"
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
-myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "|" "|" }
+-- myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "|" "|" }
 
 -- Key binding to toggle the gap for the bar.
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+-- toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
 ------------------------------------------------------------------------
 -- A structure containing your configuration settings, overriding

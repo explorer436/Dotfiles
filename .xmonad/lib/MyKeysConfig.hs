@@ -16,7 +16,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm .|. shiftMask, xK_d     ), spawn "dmenu_run")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -78,6 +78,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
+    -- Suspend/Sleep xmonad
+    , ((modm .|. shiftMask, xK_s     ), spawn "systemctl suspend")
+
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart;")
 
@@ -106,11 +109,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
-help = unlines ["The default modifier key is 'alt'. Default keybindings:",
+help = unlines ["The current modifier key is 'super'. Here are the current keybindings:",
     "",
     "-- launching and killing programs",
     "mod-Shift-Enter  Launch xterminal",
-    "mod-p            Launch dmenu",
+    "mod-Shift-d      Launch dmenu",
     "mod-Shift-p      Launch gmrun",
     "mod-Shift-c      Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
@@ -140,12 +143,13 @@ help = unlines ["The default modifier key is 'alt'. Default keybindings:",
     "mod-comma  (mod-,)   Increment the number of windows in the master area",
     "mod-period (mod-.)   Deincrement the number of windows in the master area",
     "",
-    "-- quit, or restart",
+    "-- quit, suspend/sleep, or restart",
     "mod-Shift-q  Quit xmonad",
+    "mod-Shift-s  Suspend/Sleep xmonad",
     "mod-q        Restart xmonad",
-    "mod-[1..9]   Switch to workSpace N",
     "",
     "-- Workspaces & screens",
+    "mod-[1..9]         Switch to workSpace N",
     "mod-Shift-[1..9]   Move client to workspace N",
     "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
     "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
