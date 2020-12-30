@@ -18,6 +18,5 @@
 " Or just download the plugin from a browser and then copy the file from the
 " downloaded folder to vim's colors folder.
 
-colo gruvbox
-set bg=dark
+colo onedark
 

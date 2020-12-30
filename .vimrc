@@ -268,7 +268,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'tpope/vim-fugitive'
-
+Plug 'joshdick/onedark.vim'
 call plug#end()
 " After making changes to the list here, run the command ':PlugInstall' to get
 " the latest updates.
