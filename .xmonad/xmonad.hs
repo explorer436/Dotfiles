@@ -1,5 +1,9 @@
 -- xmonad config file.
---
+
+-- References: 
+-- 1. https://wiki.archlinux.org/index.php/xmonad#Configuration
+-- 2. https://wiki.haskell.org/Xmonad/Config_archive
+
 -- A template showing all available configuration hooks,
 -- and how to override the defaults in your own xmonad.hs conf file.
 --
@@ -199,7 +203,10 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook = do
     spawn "/home/.xmonad/scripts/autostart.sh"
     spawnOnce "variety &"
-    -- spawnOnce "picom &"
+    spawnOnce "picom &"
+-- https://wiki.archlinux.org/index.php/Picom
+-- https://wiki.archlinux.org/index.php/Xorg#Composite
+-- https://en.wikipedia.org/wiki/Compositing_window_manager
 
 ------------------------------------------------------------------------
 -- Command to launch the bar.
