@@ -9,3 +9,8 @@ Before trying to use xmonad, make sure that the following packages are installed
 Additional helpful packages:
 1. picom
 2. variety
+
+TODO:
+How to toggle xmobar on and off?
+Create a keyboard shortcut to launch the Downloads folder.
+Variety - how to see the menu for it?
