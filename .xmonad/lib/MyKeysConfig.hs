@@ -15,6 +15,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
+    -- launch Thunar
+    , ((modm .|. shiftMask, xK_f     ), spawn "Thunar")
+
+    -- launch firefox
+    , ((modm .|. shiftMask, xK_b     ), spawn "firefox")
+
     -- launch dmenu
     , ((modm .|. shiftMask, xK_d     ), spawn "dmenu_run")
 
@@ -111,11 +117,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 help :: String
 help = unlines ["The current modifier key is 'super'. Here are the current keybindings:",
     "",
-    "-- launching and killing programs",
+    "-- shortcuts to launching and killing programs",
     "mod-Shift-Enter  Launch xterminal",
-    "mod-Shift-d      Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
+    "mod-Shift-b      Launch browser (firefox)",
     "mod-Shift-c      Close/kill the focused window",
+    "mod-Shift-d      Launch dmenu",
+    "mod-Shift-f      Launch folder manager (Thunar)",
+    "mod-Shift-p      Launch gmrun",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
     "mod-n            Resize/refresh viewed windows to the correct size",
