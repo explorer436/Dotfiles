@@ -23,7 +23,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %KDAW% | %date% "
+   , template = "%StdinReader% | %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %KCLT% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -50,7 +50,7 @@ Config {
    , commands = [ 
 
         -- weather monitor
-        Run Weather "KDAW" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C"
+        Run Weather "KCLT" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C"
                              ] 36000
 
         -- StdinReader
